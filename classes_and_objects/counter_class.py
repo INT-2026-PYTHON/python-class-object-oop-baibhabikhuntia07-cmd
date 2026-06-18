@@ -89,3 +89,42 @@ Explanation:
 =================================================
 
 """
+
+
+
+class Counter:
+    total = 0
+
+    def __init__(self, name):
+        self.name = name
+        self.count = 0
+
+    def increment(self, step=1):
+        self.count += step
+        Counter.total += step
+
+    def reset(self):
+        self.count = 0
+
+    def __str__(self):
+        return f"{self.name}: count={self.count}"
+
+    @staticmethod
+    def show_total():
+        return Counter.total
+
+t1 = Counter("clicks")
+t2 = Counter("views")
+t3 = Counter("downloads")
+
+for _ in range(3):
+    t1.increment()
+for _ in range(5):
+    t2.increment()
+
+t3.increment(10)
+t1.reset()  
+print(t1)
+print(t2)
+print(t3)
+print(f"Total across all counters: {Counter.show_total()}")
